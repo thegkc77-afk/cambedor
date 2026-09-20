@@ -7,41 +7,48 @@ export const Hero = () => {
   const navigate = useNavigate();
 
   return (
-    <section className="bg-grid-pattern" style={{
-      padding: '5rem 0 4rem 0',
-      borderBottom: '1px solid var(--color-border)',
+    <section className="bg-particles-pattern" style={{
+      padding: '4rem 1rem 6rem 1rem',
       position: 'relative',
+      textAlign: 'center',
       overflow: 'hidden'
     }}>
-      <div className="container-custom" style={{ textAlign: 'center', maxWidth: '860px' }}>
+      <div className="container-custom" style={{ maxWidth: '960px' }}>
         {/* Trust Pill */}
         <div style={{
           display: 'inline-flex',
           alignItems: 'center',
           gap: '0.5rem',
-          backgroundColor: 'var(--color-soft-green)',
-          border: '1px solid rgba(132, 212, 0, 0.4)',
-          borderRadius: 'var(--radius-full)',
-          padding: '0.35rem 0.875rem',
+          backgroundColor: '#FFFFFF',
+          border: '1px solid rgba(229, 231, 235, 0.9)',
+          boxShadow: 'var(--shadow-sm)',
+          borderRadius: 'var(--radius-pill)',
+          padding: '0.4rem 1rem',
           fontSize: '0.8125rem',
           fontWeight: '600',
-          color: '#2D6A00',
-          marginBottom: '1.5rem'
+          color: 'var(--color-text-secondary)',
+          marginBottom: '2.5rem'
         }}>
-          <ShieldCheck size={16} />
+          <ShieldCheck size={16} color="#84D400" />
           <span>Trusted by 500+ ambitious students & growing startups</span>
         </div>
 
-        {/* Headline */}
+        {/* Massive Multi-Color Headline Inspired by GDG Reference */}
         <h1 style={{
-          fontSize: '3.5rem',
-          fontWeight: '800',
-          lineHeight: '1.15',
+          fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
+          fontWeight: '900',
+          lineHeight: '1.05',
           letterSpacing: '-0.03em',
-          color: 'var(--color-deep-navy)',
-          marginBottom: '1.25rem'
+          marginBottom: '1.75rem',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          gap: '0.35em',
+          flexWrap: 'wrap'
         }}>
-          Build Your <span style={{ color: 'var(--color-primary-green)' }}>Future</span> Beyond Campus
+          <span style={{ color: '#EAB308' }}>Connect.</span>
+          <span style={{ color: '#3B82F6' }}>Campaign.</span>
+          <span style={{ color: '#84D400' }}>Grow.</span>
         </h1>
 
         {/* Subtitle */}
@@ -49,29 +56,43 @@ export const Hero = () => {
           fontSize: '1.25rem',
           fontWeight: '500',
           color: 'var(--color-text-secondary)',
-          lineHeight: '1.5',
-          marginBottom: '0.75rem'
-        }}>
-          Trusted by ambitious students, communities, and growing startups.
-        </p>
-
-        {/* Additional paragraph */}
-        <p style={{
-          fontSize: '1rem',
-          color: 'var(--color-text-muted)',
-          maxWidth: '640px',
-          margin: '0 auto 2.25rem auto',
+          maxWidth: '680px',
+          margin: '0 auto 2.5rem auto',
           lineHeight: '1.6'
         }}>
-          Join campaigns, lead initiatives, and earn rewards while gaining real-world industry experience.
+          Dive deep into the latest student opportunities, campus ambassadorships, & startup projects while gaining real-world industry experience.
         </p>
 
-        {/* Action Buttons */}
-        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1rem', flexWrap: 'wrap' }}>
-          <Button variant="primary" size="lg" onClick={() => navigate('/signup')} icon={ArrowRight}>
-            Get Started Now
-          </Button>
-          <Button variant="secondary" size="lg" onClick={() => navigate('/explore')} icon={Compass}>
+        {/* CTA Buttons */}
+        <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '1.25rem', flexWrap: 'wrap' }}>
+          <button
+            className="btn-pill-gradient"
+            onClick={() => navigate('/signup')}
+            style={{
+              padding: '0.875rem 2.25rem',
+              fontSize: '1.0625rem',
+              cursor: 'pointer',
+              display: 'inline-flex',
+              alignItems: 'center',
+              gap: '0.625rem'
+            }}
+          >
+            <span>Join Cambedor Community</span>
+            <ArrowRight size={18} />
+          </button>
+
+          <Button
+            variant="secondary"
+            onClick={() => navigate('/explore')}
+            icon={Compass}
+            style={{
+              borderRadius: 'var(--radius-pill)',
+              padding: '0.875rem 1.75rem',
+              fontSize: '1rem',
+              backgroundColor: '#FFFFFF',
+              boxShadow: 'var(--shadow-sm)'
+            }}
+          >
             Explore Campaigns
           </Button>
         </div>

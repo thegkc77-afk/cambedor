@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Menu, X, ChevronRight } from 'lucide-react';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { Menu, X } from 'lucide-react';
 import { Button } from './common/Button';
 import { Logo } from './common/Logo';
 import { useAuth } from '../context/AuthContext';
@@ -9,98 +9,120 @@ export const Navbar = () => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { user, isAuthenticated } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  const navLinks = [
+    { label: 'Home', path: '/' },
+    { label: 'About Us', path: '/about' },
+    { label: 'Why Join', path: '/why-join' },
+    { label: 'Student Voices', path: '/student-voices' },
+    { label: 'Explore', path: '/explore' },
+    { label: 'Contact', path: '/contact' }
+  ];
 
   return (
-    <nav style={{
-      height: '72px',
-      backgroundColor: '#FFFFFF',
-      borderBottom: '1px solid var(--color-border)',
-      position: 'sticky',
-      top: 0,
-      zIndex: 100
-    }}>
-      <div className="container-custom" style={{
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between'
-      }}>
-        {/* Brand Logo */}
-        <Logo size={36} showText={true} />
+    <>
+      <div className="floating-nav-container">
+        <header className="floating-nav">
+          {/* Left Brand Logo */}
+          <Logo size={32} showText={true} />
 
-        {/* Center Nav Links */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav-links">
-          <Link to="/about" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>About</Link>
-          <Link to="/why-join" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Why Join</Link>
-          <Link to="/student-voices" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Student Voices</Link>
-          <Link to="/explore" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Explore</Link>
-          <Link to="/contact" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Contact</Link>
-        </div>
+          {/* Center Links (Desktop) */}
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }} className="desktop-nav-links">
+            {navLinks.map((link) => {
+              const isActive = location.pathname === link.path;
+              return (
+                <Link
+                  key={link.path}
+                  to={link.path}
+                  style={{
+                    fontSize: '0.875rem',
+                    fontWeight: isActive ? '700' : '500',
+                    color: isActive ? 'var(--color-deep-navy)' : 'var(--color-text-secondary)',
+                    transition: 'color 0.15s ease'
+                  }}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
+          </nav>
 
-        {/* Right CTA / Auth */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="desktop-auth-btns">
-          {isAuthenticated ? (
-            <Button variant="dark" onClick={() => navigate(`/${user.role}/dashboard`)}>
-              Go to Dashboard ({user.role})
-            </Button>
-          ) : (
-            <>
-              <Button variant="secondary" onClick={() => navigate('/login')}>
-                Login
+          {/* Right Action Buttons */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="desktop-auth-btns">
+            {isAuthenticated ? (
+              <Button variant="dark" size="sm" onClick={() => navigate(`/${user.role}/dashboard`)}>
+                Dashboard ({user.role})
               </Button>
-              <Button variant="primary" onClick={() => navigate('/signup')}>
-                Get Started →
-              </Button>
-            </>
-          )}
-        </div>
+            ) : (
+              <>
+                <Button variant="outline" size="sm" style={{ borderRadius: 'var(--radius-pill)', padding: '0.4rem 1rem' }} onClick={() => navigate('/login')}>
+                  Login
+                </Button>
+                <Button className="btn-pill-gradient" size="sm" style={{ padding: '0.45rem 1.25rem' }} onClick={() => navigate('/signup')}>
+                  Get Started →
+                </Button>
+              </>
+            )}
+          </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          style={{
-            display: 'none',
-            background: 'none',
-            border: 'none',
-            cursor: 'pointer',
-            color: 'var(--color-text-primary)'
-          }}
-          className="mobile-nav-toggle"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          {/* Mobile Hamburger Button */}
+          <button
+            onClick={() => setMobileOpen(!mobileOpen)}
+            style={{
+              display: 'none',
+              background: 'none',
+              border: 'none',
+              cursor: 'pointer',
+              color: 'var(--color-text-primary)'
+            }}
+            className="mobile-nav-toggle"
+          >
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
+          </button>
+        </header>
       </div>
 
-      {/* Mobile Nav Overlay */}
+      {/* Spacer to offset fixed floating navbar */}
+      <div style={{ height: '90px' }} />
+
+      {/* Mobile Drawer */}
       {mobileOpen && (
         <div style={{
           position: 'fixed',
-          top: '72px',
-          left: 0,
-          right: 0,
-          bottom: 0,
+          top: '90px',
+          left: '1rem',
+          right: '1rem',
           backgroundColor: '#FFFFFF',
+          borderRadius: 'var(--radius-lg)',
+          boxShadow: 'var(--shadow-floating)',
+          border: '1px solid var(--color-border)',
           padding: '1.5rem',
           display: 'flex',
           flexDirection: 'column',
           gap: '1.25rem',
-          zIndex: 99
+          zIndex: 999
         }}>
-          <Link to="/about" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>About</Link>
-          <Link to="/why-join" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Why Join</Link>
-          <Link to="/student-voices" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Student Voices</Link>
-          <Link to="/explore" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Explore</Link>
-          <Link to="/contact" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Contact</Link>
-          
-          <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <Button variant="secondary" style={{ width: '100%' }} onClick={() => { setMobileOpen(false); navigate('/login'); }}>Login</Button>
-            <Button variant="primary" style={{ width: '100%' }} onClick={() => { setMobileOpen(false); navigate('/signup'); }}>Get Started Now →</Button>
+          {navLinks.map((link) => (
+            <Link
+              key={link.path}
+              to={link.path}
+              onClick={() => setMobileOpen(false)}
+              style={{ fontSize: '1rem', fontWeight: '600', color: 'var(--color-text-primary)' }}
+            >
+              {link.label}
+            </Link>
+          ))}
+
+          <div style={{ borderTop: '1px solid var(--color-border-light)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <Button variant="outline" onClick={() => { setMobileOpen(false); navigate('/login'); }}>Login</Button>
+            <Button className="btn-pill-gradient" onClick={() => { setMobileOpen(false); navigate('/signup'); }}>Get Started Now →</Button>
           </div>
         </div>
       )}
 
       <style>{`
-        @media (max-width: 868px) {
+        @media (max-width: 900px) {
           .desktop-nav-links, .desktop-auth-btns {
             display: none !important;
           }
@@ -109,6 +131,6 @@ export const Navbar = () => {
           }
         }
       `}</style>
-    </nav>
+    </>
   );
 };

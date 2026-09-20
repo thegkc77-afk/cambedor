@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
   /* Brand Color Palette */
@@ -10,6 +10,10 @@
   --color-bg-white: #FFFFFF;
   --color-bg-soft: #F8FAF7;
   
+  --color-accent-blue: #3B82F6;
+  --color-accent-yellow: #EAB308;
+  --color-accent-red: #EF4444;
+
   --color-text-primary: #111827;
   --color-text-secondary: #64748B;
   --color-text-muted: #94A3B8;
@@ -33,12 +37,14 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-  --shadow-hover: 0 12px 24px -4px rgba(17, 24, 43, 0.08);
+  --shadow-floating: 0 12px 32px rgba(17, 24, 43, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 16px 32px -4px rgba(17, 24, 43, 0.12);
 
   /* Radius */
   --radius-sm: 6px;
   --radius-md: 10px;
   --radius-lg: 14px;
+  --radius-pill: 9999px;
   --radius-full: 9999px;
   
   /* Transitions */
@@ -54,11 +60,12 @@
 
 body {
   font-family: var(--font-family);
-  background-color: var(--color-bg-white);
+  background-color: #FAFAFA;
   color: var(--color-text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
 }
 
 a {
@@ -71,12 +78,62 @@ button, input, select, textarea {
   font-size: inherit;
 }
 
-/* Subtle Grid Background for Landing Hero */
-.bg-grid-pattern {
-  background-size: 32px 32px;
+/* Floating Pill Navbar Wrapper */
+.floating-nav-container {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  padding: 0 1.25rem;
+  pointer-events: none;
+}
+
+.floating-nav {
+  pointer-events: auto;
+  width: 100%;
+  max-width: 1040px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(229, 231, 235, 0.8);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-floating);
+  padding: 0.625rem 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+}
+
+/* Scattered Micro-Particles Background */
+.bg-particles-pattern {
+  background-color: #FAFAFA;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+    radial-gradient(#EAB308 1.5px, transparent 1.5px),
+    radial-gradient(#3B82F6 1.5px, transparent 1.5px),
+    radial-gradient(#84D400 1.5px, transparent 1.5px),
+    radial-gradient(#EF4444 1.5px, transparent 1.5px);
+  background-size: 120px 120px, 90px 90px, 140px 140px, 110px 110px;
+  background-position: 0 0, 30px 40px, 70px 10px, 15px 80px;
+}
+
+/* Gradient Pill CTA Button */
+.btn-pill-gradient {
+  background: linear-gradient(135deg, #3B82F6 0%, #84D400 100%);
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+  border-radius: var(--radius-pill) !important;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3) !important;
+  border: none !important;
+  transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+}
+
+.btn-pill-gradient:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 12px 28px rgba(132, 212, 0, 0.4) !important;
 }
 
 /* Scrollbar styling */
@@ -90,9 +147,6 @@ button, input, select, textarea {
 ::-webkit-scrollbar-thumb {
   background: var(--color-border);
   border-radius: var(--radius-full);
-}
-::-webkit-scrollbar-thumb:hover {
-  background: var(--color-text-muted);
 }
 
 /* Badges */
