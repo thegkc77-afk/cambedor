@@ -33,22 +33,18 @@ export const Hero = () => {
           <span>Trusted by 500+ ambitious students & growing startups</span>
         </div>
 
-        {/* Massive Multi-Color Headline Inspired by GDG Reference */}
+        {/* Primary Requested Headline: Build Your Future Beyond Campus */}
         <h1 style={{
-          fontSize: 'clamp(3.5rem, 8vw, 6.5rem)',
+          fontSize: 'clamp(3.2rem, 7.5vw, 6rem)',
           fontWeight: '900',
-          lineHeight: '1.05',
+          lineHeight: '1.08',
           letterSpacing: '-0.03em',
           marginBottom: '1.75rem',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          gap: '0.35em',
-          flexWrap: 'wrap'
+          color: '#111827'
         }}>
-          <span style={{ color: '#EAB308' }}>Connect.</span>
-          <span style={{ color: '#3B82F6' }}>Campaign.</span>
-          <span style={{ color: '#84D400' }}>Grow.</span>
+          Build Your <span style={{ color: '#84D400' }}>Future</span>
+          <br />
+          Beyond Campus
         </h1>
 
         {/* Subtitle */}
@@ -60,7 +56,7 @@ export const Hero = () => {
           margin: '0 auto 2.5rem auto',
           lineHeight: '1.6'
         }}>
-          Dive deep into the latest student opportunities, campus ambassadorships, & startup projects while gaining real-world industry experience.
+          Trusted by ambitious students, communities, and growing startups. Join campaigns, lead initiatives, and earn rewards while gaining real-world industry experience.
         </p>
 
         {/* CTA Buttons */}
@@ -77,7 +73,7 @@ export const Hero = () => {
               gap: '0.625rem'
             }}
           >
-            <span>Join Cambedor Community</span>
+            <span>Get Started Now</span>
             <ArrowRight size={18} />
           </button>
 

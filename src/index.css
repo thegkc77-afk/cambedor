@@ -1,22 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Brand Color Palette */
+  /* Brand Logo Color Palette */
   --color-primary-dark: #111827;
-  --color-deep-navy: #11182B;
+  --color-deep-navy: #111827;
   --color-primary-green: #84D400;
   --color-light-green: #A6D94A;
   --color-soft-green: #F1F8E8;
   --color-bg-white: #FFFFFF;
   --color-bg-soft: #F8FAF7;
   
-  --color-accent-blue: #3B82F6;
-  --color-accent-yellow: #EAB308;
-  --color-accent-red: #EF4444;
-
   --color-text-primary: #111827;
-  --color-text-secondary: #64748B;
-  --color-text-muted: #94A3B8;
+  --color-text-secondary: #4B5563;
+  --color-text-muted: #9CA3AF;
   
   --color-border: #E5E7EB;
   --color-border-light: #F3F4F6;
@@ -37,8 +33,8 @@
   --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
   --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
   --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025);
-  --shadow-floating: 0 12px 32px rgba(17, 24, 43, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
-  --shadow-hover: 0 16px 32px -4px rgba(17, 24, 43, 0.12);
+  --shadow-floating: 0 12px 32px rgba(17, 24, 39, 0.08), 0 2px 6px rgba(0, 0, 0, 0.04);
+  --shadow-hover: 0 16px 32px -4px rgba(17, 24, 39, 0.12);
 
   /* Radius */
   --radius-sm: 6px;
@@ -95,10 +91,10 @@ button, input, select, textarea {
   pointer-events: auto;
   width: 100%;
   max-width: 1040px;
-  background: rgba(255, 255, 255, 0.92);
+  background: rgba(255, 255, 255, 0.94);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(229, 231, 235, 0.8);
+  border: 1px solid rgba(229, 231, 235, 0.9);
   border-radius: var(--radius-pill);
   box-shadow: var(--shadow-floating);
   padding: 0.625rem 1.25rem;
@@ -108,32 +104,31 @@ button, input, select, textarea {
   transition: all 0.25s ease;
 }
 
-/* Scattered Micro-Particles Background */
+/* Micro-Particles Background tuned to Logo Colors */
 .bg-particles-pattern {
   background-color: #FAFAFA;
   background-image: 
-    radial-gradient(#EAB308 1.5px, transparent 1.5px),
-    radial-gradient(#3B82F6 1.5px, transparent 1.5px),
-    radial-gradient(#84D400 1.5px, transparent 1.5px),
-    radial-gradient(#EF4444 1.5px, transparent 1.5px);
-  background-size: 120px 120px, 90px 90px, 140px 140px, 110px 110px;
-  background-position: 0 0, 30px 40px, 70px 10px, 15px 80px;
+    radial-gradient(#84D400 1.75px, transparent 1.75px),
+    radial-gradient(#111827 1.25px, transparent 1.25px),
+    radial-gradient(#A6D94A 1.5px, transparent 1.5px);
+  background-size: 100px 100px, 140px 140px, 80px 80px;
+  background-position: 0 0, 40px 50px, 20px 70px;
 }
 
-/* Gradient Pill CTA Button */
+/* Gradient Pill CTA Button tuned to Logo Colors */
 .btn-pill-gradient {
-  background: linear-gradient(135deg, #3B82F6 0%, #84D400 100%);
-  color: #FFFFFF !important;
-  font-weight: 700 !important;
+  background: linear-gradient(135deg, #84D400 0%, #68A800 100%);
+  color: #111827 !important;
+  font-weight: 800 !important;
   border-radius: var(--radius-pill) !important;
-  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3) !important;
-  border: none !important;
+  box-shadow: 0 8px 24px rgba(132, 212, 0, 0.35) !important;
+  border: 1px solid rgba(132, 212, 0, 0.5) !important;
   transition: transform 0.2s ease, box-shadow 0.2s ease !important;
 }
 
 .btn-pill-gradient:hover {
   transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 12px 28px rgba(132, 212, 0, 0.4) !important;
+  box-shadow: 0 12px 28px rgba(132, 212, 0, 0.5) !important;
 }
 
 /* Scrollbar styling */
