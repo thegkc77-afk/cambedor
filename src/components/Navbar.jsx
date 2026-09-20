@@ -1,106 +1,131 @@
 import React, { useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import { UserRoundSearch, LogIn, Menu, X, Zap } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Menu, X, ChevronRight } from 'lucide-react';
+import { Button } from './common/Button';
+import { useAuth } from '../context/AuthContext';
 
-export default function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const location = useLocation();
-
-  const toggleMobileMenu = () => {
-    setMobileMenuOpen(!mobileMenuOpen);
-  };
-
-  const closeMobileMenu = () => {
-    setMobileMenuOpen(false);
-  };
-
-  const isActive = (path) => location.pathname === path;
+export const Navbar = () => {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const { user, isAuthenticated } = useAuth();
+  const navigate = useNavigate();
 
   return (
-    <nav className="navbar">
-      <div className="container navbar-container">
-        {/* Left: Brand Logo */}
-        <Link to="/" className="logo-link" onClick={closeMobileMenu}>
-          <div className="logo-icon" aria-label="Cambedor Icon">
-            <Zap size={20} strokeWidth={2.5} fill="#84D400" />
+    <nav style={{
+      height: '72px',
+      backgroundColor: '#FFFFFF',
+      borderBottom: '1px solid var(--color-border)',
+      position: 'sticky',
+      top: 0,
+      zIndex: 100
+    }}>
+      <div className="container-custom" style={{
+        height: '100%',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'space-between'
+      }}>
+        {/* Brand Logo */}
+        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
+          <div style={{
+            width: '34px',
+            height: '34px',
+            borderRadius: 'var(--radius-md)',
+            backgroundColor: 'var(--color-deep-navy)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            color: 'var(--color-primary-green)',
+            fontWeight: '800',
+            fontSize: '1.2rem'
+          }}>
+            C
           </div>
-          <span className="logo-text">CAMBEDOR</span>
+          <span style={{ fontSize: '1.35rem', fontWeight: '800', letterSpacing: '-0.02em', color: 'var(--color-deep-navy)' }}>
+            CAMBEDOR
+          </span>
         </Link>
 
-        {/* Navigation Links (Desktop) */}
-        <ul className="nav-links">
-          <li>
-            <Link to="/about" className={`nav-link ${isActive('/about') ? 'active' : ''}`}>
-              About
-            </Link>
-          </li>
-          <li>
-            <Link to="/why-join" className={`nav-link ${isActive('/why-join') ? 'active' : ''}`}>
-              Why Join
-            </Link>
-          </li>
-          <li>
-            <Link to="/student-voices" className={`nav-link ${isActive('/student-voices') ? 'active' : ''}`}>
-              Student Voices
-            </Link>
-          </li>
-          <li>
-            <Link to="/explore" className={`nav-link ${isActive('/explore') ? 'active' : ''}`}>
-              <UserRoundSearch size={16} />
-              Explore
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className={`nav-link ${isActive('/contact') ? 'active' : ''}`}>
-              Contact
-            </Link>
-          </li>
-          <li>
-            <Link to="/login" className="btn btn-login nav-link-login">
-              <LogIn size={15} />
-              Login
-            </Link>
-          </li>
-        </ul>
+        {/* Center Nav Links */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav-links">
+          <Link to="/about" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>About</Link>
+          <Link to="/why-join" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Why Join</Link>
+          <Link to="/student-voices" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Student Voices</Link>
+          <Link to="/explore" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Explore</Link>
+          <Link to="/contact" style={{ fontSize: '0.9375rem', fontWeight: '500', color: 'var(--color-text-secondary)' }}>Contact</Link>
+        </div>
 
-        {/* Hamburger Menu Button (Mobile) */}
+        {/* Right CTA / Auth */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem' }} className="desktop-auth-btns">
+          {isAuthenticated ? (
+            <Button variant="dark" onClick={() => navigate(`/${user.role}/dashboard`)}>
+              Go to Dashboard ({user.role})
+            </Button>
+          ) : (
+            <>
+              <Button variant="secondary" onClick={() => navigate('/login')}>
+                Login
+              </Button>
+              <Button variant="primary" onClick={() => navigate('/signup')}>
+                Get Started →
+              </Button>
+            </>
+          )}
+        </div>
+
+        {/* Mobile Toggle */}
         <button
-          className="hamburger-btn"
-          onClick={toggleMobileMenu}
-          aria-label={mobileMenuOpen ? "Close Menu" : "Open Menu"}
+          onClick={() => setMobileOpen(!mobileOpen)}
+          style={{
+            display: 'none',
+            background: 'none',
+            border: 'none',
+            cursor: 'pointer',
+            color: 'var(--color-text-primary)'
+          }}
+          className="mobile-nav-toggle"
         >
-          {mobileMenuOpen ? <X size={26} /> : <Menu size={26} />}
+          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="mobile-menu">
-          <Link to="/" className="mobile-nav-link" onClick={closeMobileMenu}>
-            Home
-          </Link>
-          <Link to="/about" className="mobile-nav-link" onClick={closeMobileMenu}>
-            About
-          </Link>
-          <Link to="/why-join" className="mobile-nav-link" onClick={closeMobileMenu}>
-            Why Join
-          </Link>
-          <Link to="/student-voices" className="mobile-nav-link" onClick={closeMobileMenu}>
-            Student Voices
-          </Link>
-          <Link to="/explore" className="mobile-nav-link" onClick={closeMobileMenu}>
-            <UserRoundSearch size={18} />
-            Explore Campaigns
-          </Link>
-          <Link to="/contact" className="mobile-nav-link" onClick={closeMobileMenu}>
-            Contact
-          </Link>
-          <Link to="/login" className="btn btn-primary" onClick={closeMobileMenu} style={{ marginTop: '0.5rem', width: '100%' }}>
-            <LogIn size={18} />
-            Login / Sign Up
-          </Link>
+      {/* Mobile Nav Overlay */}
+      {mobileOpen && (
+        <div style={{
+          position: 'fixed',
+          top: '72px',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundColor: '#FFFFFF',
+          padding: '1.5rem',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '1.25rem',
+          zIndex: 99
+        }}>
+          <Link to="/about" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>About</Link>
+          <Link to="/why-join" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Why Join</Link>
+          <Link to="/student-voices" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Student Voices</Link>
+          <Link to="/explore" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Explore</Link>
+          <Link to="/contact" onClick={() => setMobileOpen(false)} style={{ fontSize: '1.125rem', fontWeight: '600' }}>Contact</Link>
+          
+          <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
+            <Button variant="secondary" style={{ width: '100%' }} onClick={() => { setMobileOpen(false); navigate('/login'); }}>Login</Button>
+            <Button variant="primary" style={{ width: '100%' }} onClick={() => { setMobileOpen(false); navigate('/signup'); }}>Get Started Now →</Button>
+          </div>
         </div>
       )}
+
+      <style>{`
+        @media (max-width: 868px) {
+          .desktop-nav-links, .desktop-auth-btns {
+            display: none !important;
+          }
+          .mobile-nav-toggle {
+            display: flex !important;
+          }
+        }
+      `}</style>
     </nav>
   );
-}
+};

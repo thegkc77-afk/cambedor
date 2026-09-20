@@ -1,27 +1,46 @@
 import React from 'react';
 
-export default function Stats() {
+export const Stats = () => {
   const statsList = [
-    { number: '500+', label: 'STUDENTS', isGreen: false },
-    { number: '30+', label: 'CAMPUSES', isGreen: false },
-    { number: '20+', label: 'COMMUNITIES', isGreen: false },
-    { number: 'Growing', label: 'STARTUP NETWORK', isGreen: true },
+    { label: 'ACTIVE STUDENTS', value: '500+' },
+    { label: 'PARTNER STARTUPS', value: '30+' },
+    { label: 'LIVE CAMPAIGNS', value: '20+' },
+    { label: 'COMPLETED ACTIVITIES', value: '1,240+' }
   ];
 
   return (
-    <section className="stats-section">
-      <div className="container">
-        <div className="stats-grid">
+    <section style={{ padding: '3rem 0', backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--color-border)' }}>
+      <div className="container-custom">
+        <div style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))',
+          gap: '2rem',
+          textAlign: 'center'
+        }}>
           {statsList.map((stat, idx) => (
-            <div key={idx} className="stat-item">
-              <div className={`stat-number ${stat.isGreen ? 'green' : 'dark'}`}>
-                {stat.number}
-              </div>
-              <div className="stat-label">{stat.label}</div>
+            <div key={idx} style={{ padding: '1rem' }}>
+              <p style={{
+                fontSize: '2.5rem',
+                fontWeight: '800',
+                color: 'var(--color-deep-navy)',
+                lineHeight: '1.2',
+                marginBottom: '0.25rem'
+              }}>
+                {stat.value}
+              </p>
+              <p style={{
+                fontSize: '0.75rem',
+                fontWeight: '700',
+                letterSpacing: '0.08em',
+                color: 'var(--color-text-muted)',
+                textTransform: 'uppercase'
+              }}>
+                {stat.label}
+              </p>
             </div>
           ))}
         </div>
       </div>
     </section>
   );
-}
+};
