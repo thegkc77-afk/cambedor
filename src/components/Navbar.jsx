@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Menu, X, ChevronRight } from 'lucide-react';
 import { Button } from './common/Button';
+import { Logo } from './common/Logo';
 import { useAuth } from '../context/AuthContext';
 
 export const Navbar = () => {
@@ -25,25 +26,7 @@ export const Navbar = () => {
         justifyContent: 'space-between'
       }}>
         {/* Brand Logo */}
-        <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-          <div style={{
-            width: '34px',
-            height: '34px',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'var(--color-deep-navy)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--color-primary-green)',
-            fontWeight: '800',
-            fontSize: '1.2rem'
-          }}>
-            C
-          </div>
-          <span style={{ fontSize: '1.35rem', fontWeight: '800', letterSpacing: '-0.02em', color: 'var(--color-deep-navy)' }}>
-            CAMBEDOR
-          </span>
-        </Link>
+        <Logo size={36} showText={true} />
 
         {/* Center Nav Links */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '2rem' }} className="desktop-nav-links">

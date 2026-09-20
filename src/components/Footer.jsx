@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { Logo } from './common/Logo';
 
 export const Footer = () => {
   return (
@@ -19,24 +20,8 @@ export const Footer = () => {
         }}>
           {/* Brand Col */}
           <div style={{ gridColumn: 'span 2' }}>
-            <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem', marginBottom: '1rem' }}>
-              <div style={{
-                width: '32px',
-                height: '32px',
-                borderRadius: 'var(--radius-md)',
-                backgroundColor: 'var(--color-primary-green)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: '#111827',
-                fontWeight: '800',
-                fontSize: '1.1rem'
-              }}>
-                C
-              </div>
-              <span style={{ fontSize: '1.25rem', fontWeight: '800', letterSpacing: '-0.02em', color: '#FFFFFF' }}>
-                CAMBEDOR
-              </span>
+            <div style={{ marginBottom: '1rem' }}>
+              <Logo size={36} showText={true} />
             </div>
             <p style={{ color: '#94A3B8', lineHeight: '1.6', maxWidth: '340px' }}>
               Student opportunity and startup engagement platform connecting ambitious college talent with real-world industry campaigns.

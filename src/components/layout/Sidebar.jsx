@@ -1,5 +1,6 @@
 import React from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import { Logo } from '../common/Logo';
 import {
   LayoutDashboard,
   Compass,
@@ -89,42 +90,13 @@ export const Sidebar = ({ isMobileOpen, onCloseMobile }) => {
     }}>
       {/* Brand Logo Header */}
       <div style={{
-        padding: '1.5rem',
+        padding: '1.25rem 1.25rem',
         borderBottom: '1px solid var(--color-border-light)',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between'
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '0.625rem' }}>
-          <div style={{
-            width: '32px',
-            height: '32px',
-            borderRadius: 'var(--radius-md)',
-            backgroundColor: 'var(--color-deep-navy)',
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            color: 'var(--color-primary-green)',
-            fontWeight: '800',
-            fontSize: '1.125rem'
-          }}>
-            C
-          </div>
-          <div>
-            <span style={{ fontSize: '1.25rem', fontWeight: '800', letterSpacing: '-0.02em', color: 'var(--color-deep-navy)' }}>
-              CAMBEDOR
-            </span>
-            <span style={{
-              display: 'block',
-              fontSize: '0.65rem',
-              fontWeight: '700',
-              color: '#84D400',
-              letterSpacing: '0.08em'
-            }}>
-              {roleLabel} PANEL
-            </span>
-          </div>
-        </div>
+        <Logo size={34} showText={true} textSublabel={`${roleLabel} PANEL`} linkTo={`/${role}/dashboard`} />
       </div>
 
       {/* Nav Menu */}

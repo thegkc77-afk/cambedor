@@ -3,6 +3,7 @@ import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../../context/AuthContext';
 import { Button } from '../../components/common/Button';
 import { Card } from '../../components/common/Card';
+import { Logo } from '../../components/common/Logo';
 import { Navbar } from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
 import { UserCheck, Building2, Shield, ArrowRight } from 'lucide-react';
@@ -33,20 +34,8 @@ export const LoginPage = () => {
       <main style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '3rem 1rem' }}>
         <Card padding="2rem" style={{ maxWidth: '460px', width: '100%' }}>
           <div style={{ textAlign: 'center', marginBottom: '1.75rem' }}>
-            <div style={{
-              width: '42px',
-              height: '42px',
-              borderRadius: 'var(--radius-md)',
-              backgroundColor: 'var(--color-deep-navy)',
-              color: 'var(--color-primary-green)',
-              fontWeight: '800',
-              fontSize: '1.25rem',
-              display: 'inline-flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              marginBottom: '0.75rem'
-            }}>
-              C
+            <div style={{ display: 'inline-block', marginBottom: '0.75rem' }}>
+              <Logo size={48} showText={false} linkTo={null} />
             </div>
             <h2 style={{ fontSize: '1.75rem', fontWeight: '800', color: 'var(--color-deep-navy)' }}>
               Welcome Back
