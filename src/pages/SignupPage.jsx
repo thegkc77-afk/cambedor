@@ -48,7 +48,7 @@ export default function SignupPage() {
 
           <form onSubmit={handleSignup}>
             <div className="form-group">
-              <label className="form-label">Full Name</label>
+              <label className="form-label">Full Name :</label>
               <input
                 type="text"
                 required
@@ -60,38 +60,38 @@ export default function SignupPage() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">{role === 'student' ? 'College / Student Email' : 'Work Email'}</label>
+              <label className="form-label">Work Email Address :</label>
               <input
                 type="email"
                 required
                 className="form-input"
-                placeholder={role === 'student' ? 'aarav@college.edu.in' : 'founder@startup.com'}
+                placeholder="aarav.sharma@iitd.ac.in"
                 value={formData.email}
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
             </div>
 
             <div className="form-group">
-              <label className="form-label">{role === 'student' ? 'Institution / University Name' : 'Company / Organization Name'}</label>
-              <input
-                type="text"
-                required
-                className="form-input"
-                placeholder={role === 'student' ? 'IIT Delhi / BITS Pilani / DTU' : 'Acme AI Labs'}
-                value={formData.college}
-                onChange={(e) => setFormData({ ...formData, college: e.target.value })}
-              />
-            </div>
-
-            <div className="form-group">
-              <label className="form-label">Create Password</label>
+              <label className="form-label">Password :</label>
               <input
                 type="password"
                 required
                 className="form-input"
-                placeholder="At least 8 characters"
+                placeholder="••••••••"
                 value={formData.password}
                 onChange={(e) => setFormData({ ...formData, password: e.target.value })}
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">University / College :</label>
+              <input
+                type="text"
+                required
+                className="form-input"
+                placeholder="IIT Bombay / Delhi University"
+                value={formData.college}
+                onChange={(e) => setFormData({ ...formData, college: e.target.value })}
               />
             </div>
 

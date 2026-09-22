@@ -65,7 +65,13 @@ export const WhyJoin = () => {
   ];
 
   return (
-    <section style={{ padding: '5rem 0 6rem 0', backgroundColor: '#0B0F19', color: '#FFFFFF', position: 'relative', overflow: 'hidden' }}>
+    <section style={{
+      padding: '5.5rem 0 7.5rem 0',
+      backgroundColor: '#FFFFFF',
+      color: '#0F172A',
+      position: 'relative',
+      borderBottom: '1px solid #F1F5F9'
+    }}>
       {/* Background Ambient Glow */}
       <div style={{
         position: 'absolute',
@@ -74,54 +80,51 @@ export const WhyJoin = () => {
         width: '500px',
         height: '500px',
         borderRadius: '50%',
-        background: 'radial-gradient(circle, rgba(132, 212, 0, 0.12) 0%, rgba(0,0,0,0) 70%)',
+        background: 'radial-gradient(circle, rgba(22, 163, 74, 0.08) 0%, rgba(255,255,255,0) 70%)',
         filter: 'blur(60px)',
         pointerEvents: 'none'
       }} />
 
-      <div className="container-custom">
+      <div className="container-custom" style={{ maxWidth: '1240px', margin: '0 auto', padding: '0 1.5rem' }}>
         {/* Big Banner Header */}
-        <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
           <span style={{
-            fontSize: 'clamp(2.5rem, 6vw, 4.5rem)',
+            fontSize: 'clamp(2.5rem, 5vw, 4rem)',
             fontWeight: '900',
             letterSpacing: '0.08em',
-            color: '#FFFFFF',
+            color: '#0F172A',
             display: 'block',
             textTransform: 'uppercase',
             lineHeight: '1'
           }}>
-            CAMBEDOR <span style={{ color: '#84D400' }}>UNIVERSE</span>
+            CAMBEDOR <span style={{ color: '#15803D' }}>UNIVERSE</span>
           </span>
         </div>
 
-        {/* Sticky 2-Column Grid matching Video layout */}
+        {/* 2-Column Grid Layout */}
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'minmax(280px, 1fr) minmax(320px, 1.4fr)',
           gap: '3.5rem',
           alignItems: 'start'
-        }}>
+        }} className="why-join-grid">
+
           {/* Left Column: Pinned Sticky Title & Subtitle */}
-          <div style={{
-            position: 'sticky',
-            top: '120px',
-            alignSelf: 'start'
-          }}>
+          <div style={{ position: 'sticky', top: '120px', alignSelf: 'start' }}>
             <h2 style={{
-              fontSize: 'clamp(2rem, 4vw, 3rem)',
+              fontSize: 'clamp(2rem, 3.5vw, 2.75rem)',
               fontWeight: '900',
-              color: '#FFFFFF',
+              color: '#0F172A',
               lineHeight: '1.15',
               marginBottom: '1.25rem'
             }}>
               Inside <br />
-              <span style={{ color: '#84D400' }}>Cambedor Universe</span>
+              <span style={{ color: '#15803D' }}>Cambedor Universe</span>
             </h2>
 
             <p style={{
               fontSize: '1.125rem',
-              color: '#94A3B8',
+              color: '#334155',
               lineHeight: '1.7',
               maxWidth: '380px',
               marginBottom: '2rem'
@@ -134,8 +137,8 @@ export const WhyJoin = () => {
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate('/signup')}
               style={{
-                backgroundColor: '#84D400',
-                color: '#111827',
+                backgroundColor: '#16A34A',
+                color: '#FFFFFF',
                 fontWeight: '700',
                 fontSize: '0.95rem',
                 padding: '0.85rem 1.75rem',
@@ -145,7 +148,7 @@ export const WhyJoin = () => {
                 display: 'inline-flex',
                 alignItems: 'center',
                 gap: '0.5rem',
-                boxShadow: '0 8px 20px rgba(132, 212, 0, 0.3)'
+                boxShadow: '0 8px 20px rgba(22, 163, 74, 0.3)'
               }}
             >
               <span>Join Universe Now</span>
@@ -153,32 +156,26 @@ export const WhyJoin = () => {
             </motion.button>
           </div>
 
-          {/* Right Column: Scrolling Cards Stack */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+          {/* Right Column: Sticky Stacking Cards */}
+          <div style={{ display: 'flex', flexDirection: 'column', position: 'relative' }} className="why-join-cards-column">
             {cards.map((card, idx) => (
-              <motion.div
+              <div
                 key={idx}
                 className="why-join-card"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: false, amount: 0.2 }}
-                transition={{ duration: 0.5, delay: 0.05 }}
-                whileHover={{
-                  y: -8,
-                  scale: 1.015,
-                  boxShadow: '0 30px 60px rgba(0, 0, 0, 0.35)',
-                  transition: { duration: 0.25, ease: 'easeOut' }
-                }}
                 style={{
+                  position: 'sticky',
+                  top: `calc(110px + ${idx * 85}px)`,
+                  zIndex: idx + 1,
                   backgroundColor: '#FFFFFF',
                   color: '#111827',
-                  borderRadius: '1.5rem',
-                  padding: '2rem',
-                  boxShadow: '0 20px 40px rgba(0, 0, 0, 0.25)',
-                  position: 'relative',
-                  overflow: 'hidden',
+                  borderRadius: '1.25rem',
+                  padding: '1.75rem 2rem 2rem 2rem',
+                  boxShadow: '0 -8px 30px rgba(0, 0, 0, 0.07), 0 20px 45px rgba(0, 0, 0, 0.1)',
+                  marginBottom: idx === cards.length - 1 ? '0' : '40vh',
                   cursor: 'pointer',
-                  border: '1px solid rgba(255, 255, 255, 0.1)'
+                  border: '1px solid #E2E8F0',
+                  borderTop: '3px solid #E11D48',
+                  isolation: 'isolate'
                 }}
                 onClick={() => navigate(card.path)}
               >
@@ -207,7 +204,7 @@ export const WhyJoin = () => {
                   gridTemplateColumns: '170px 1fr',
                   gap: '1.5rem',
                   alignItems: 'center'
-                }}>
+                }} className="why-join-card-body">
                   {/* Left Thumbnail Image with Overlay Badge */}
                   <div style={{
                     position: 'relative',
@@ -230,8 +227,7 @@ export const WhyJoin = () => {
                       position: 'absolute',
                       bottom: '0.625rem',
                       left: '0.625rem',
-                      backgroundColor: 'rgba(15, 23, 42, 0.85)',
-                      backdropFilter: 'blur(6px)',
+                      backgroundColor: '#0F172A',
                       color: '#FFFFFF',
                       fontSize: '0.70rem',
                       fontWeight: '700',
@@ -283,31 +279,27 @@ export const WhyJoin = () => {
                 >
                   <ArrowRight size={20} />
                 </motion.div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
       </div>
 
       <style>{`
-        .why-join-card .why-join-card-img {
+        .why-join-card-img {
           transition: transform 500ms ease-out;
           transform: scale(1);
           will-change: transform;
         }
-        .why-join-card:hover .why-join-card-img {
+        .why-join-card-img:hover {
           transform: scale(1.1);
         }
         @media (max-width: 860px) {
-          div[style*="grid-template-columns: minmax"] {
+          .why-join-grid {
             grid-template-columns: 1fr !important;
+            gap: 2rem !important;
           }
-          div[style*="position: sticky"] {
-            position: relative !important;
-            top: 0 !important;
-            margin-bottom: 2rem;
-          }
-          div[style*="grid-template-columns: 170px 1fr"] {
+          .why-join-card-body {
             grid-template-columns: 1fr !important;
           }
         }

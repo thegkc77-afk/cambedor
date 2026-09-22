@@ -26,14 +26,29 @@ export const FAQ = () => {
   ];
 
   return (
-    <section style={{ padding: '4.5rem 0', backgroundColor: '#FFFFFF', borderBottom: '1px solid var(--color-border)' }}>
-      <div className="container-custom" style={{ maxWidth: '800px' }}>
-        <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
-          <h2 style={{ fontSize: '2.25rem', fontWeight: '800', color: 'var(--color-deep-navy)', marginBottom: '0.75rem' }}>
+    <section style={{ padding: '5.5rem 0', backgroundColor: '#FFFFFF', borderBottom: '1px solid #F1F5F9' }}>
+      <div className="container-custom" style={{ maxWidth: '840px', margin: '0 auto', padding: '0 1.5rem' }}>
+        <div style={{ textAlign: 'center', marginBottom: '3.5rem' }}>
+          <span style={{
+            display: 'inline-block',
+            fontSize: '0.8rem',
+            fontWeight: '800',
+            color: '#15803D',
+            backgroundColor: '#F0FDF4',
+            border: '1px solid #DCFCE7',
+            padding: '0.35rem 0.9rem',
+            borderRadius: '999px',
+            marginBottom: '1rem',
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase'
+          }}>
+            Got Questions?
+          </span>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: '800', color: '#0F172A', marginBottom: '0.85rem', letterSpacing: '-0.02em' }}>
             Frequently Asked Questions
           </h2>
-          <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)' }}>
-            Everything you need to know about Cambedor platform and campaigns.
+          <p style={{ fontSize: '1.05rem', color: '#475569', fontWeight: '400' }}>
+            Everything you need to know about the Cambedor platform and campaigns.
           </p>
         </div>
 
