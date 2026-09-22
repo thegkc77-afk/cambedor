@@ -9,6 +9,7 @@ export const Button = ({
   type = 'button',
   icon: Icon = null,
   className = '',
+  style = {},
   ...props
 }) => {
   const getVariantStyles = () => {
@@ -74,20 +75,21 @@ export const Button = ({
         display: 'inline-flex',
         alignItems: 'center',
         justifyContent: 'center',
-        gap: '0.5rem',
+        gap: '0.65rem',
         borderRadius: 'var(--radius-md)',
         cursor: disabled ? 'not-allowed' : 'pointer',
         opacity: disabled ? 0.6 : 1,
         transition: 'all 0.15s ease',
         boxShadow: variant === 'primary' ? '0 2px 4px rgba(132, 212, 0, 0.25)' : 'none',
         ...getVariantStyles(),
-        ...getSizeStyles()
+        ...getSizeStyles(),
+        ...style
       }}
       className={`btn-${variant} ${className}`}
       {...props}
     >
-      {Icon && <Icon size={size === 'sm' ? 14 : size === 'lg' ? 20 : 16} />}
-      {children}
+      {Icon && <Icon size={size === 'sm' ? 14 : size === 'lg' ? 20 : 18} />}
+      <span>{children}</span>
     </button>
   );
 };

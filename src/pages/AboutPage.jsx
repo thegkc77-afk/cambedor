@@ -1,6 +1,5 @@
 import React from 'react';
 import About from '../components/About';
-import Mission from '../components/Mission';
 import FinalCTA from '../components/FinalCTA';
 
 export default function AboutPage() {
@@ -16,7 +15,6 @@ export default function AboutPage() {
         </div>
       </div>
       <About />
-      <Mission />
       <FinalCTA />
     </main>
   );

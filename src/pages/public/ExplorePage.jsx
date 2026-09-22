@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'framer-motion';
 import { Navbar } from '../../components/Navbar';
 import { Footer } from '../../components/Footer';
 import { useData } from '../../context/DataContext';
@@ -23,28 +24,49 @@ export const ExplorePage = () => {
       <Navbar />
       <main style={{ flex: 1, padding: '3rem 0', backgroundColor: 'var(--color-bg-soft)' }}>
         <div className="container-custom">
-          <div style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 2.5rem auto' }}>
-            <h1 style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--color-deep-navy)', marginBottom: '0.75rem' }}>
-              Explore Campaigns
-            </h1>
-            <p style={{ fontSize: '1rem', color: 'var(--color-text-secondary)' }}>
+          {/* Hero Banner Section */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            style={{ textAlign: 'center', maxWidth: '640px', margin: '0 auto 2.5rem auto' }}
+          >
+            <motion.h1
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.5, delay: 0.1 }}
+              style={{ fontSize: '2.5rem', fontWeight: '800', color: 'var(--color-deep-navy)', marginBottom: '0.75rem' }}
+            >
+              Explore <span style={{ color: '#84D400' }}>Campaigns</span>
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              style={{ fontSize: '1rem', color: 'var(--color-text-secondary)' }}
+            >
               Discover active campus ambassador programs, social campaigns, and startup projects.
-            </p>
-          </div>
+            </motion.p>
+          </motion.div>
 
           {/* Controls Bar */}
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            flexWrap: 'wrap',
-            gap: '1rem',
-            marginBottom: '2rem',
-            backgroundColor: '#FFFFFF',
-            padding: '1rem 1.25rem',
-            border: '1px solid var(--color-border)',
-            borderRadius: 'var(--radius-lg)'
-          }}>
+          <motion.div
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+            style={{
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'space-between',
+              flexWrap: 'wrap',
+              gap: '1rem',
+              marginBottom: '2rem',
+              backgroundColor: '#FFFFFF',
+              padding: '1rem 1.25rem',
+              border: '1px solid var(--color-border)',
+              borderRadius: 'var(--radius-lg)'
+            }}
+          >
             <SearchBar value={search} onChange={setSearch} placeholder="Search campaigns or startups..." />
             <Filter
               label="Category"
@@ -58,14 +80,19 @@ export const ExplorePage = () => {
                 { label: 'Social Impact', value: 'social impact' }
               ]}
             />
-          </div>
+          </motion.div>
 
           {/* Grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}>
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: '1.5rem' }}
+          >
             {filteredCampaigns.map(campaign => (
               <CampaignCard key={campaign.id} campaign={campaign} />
             ))}
-          </div>
+          </motion.div>
         </div>
       </main>
       <Footer />

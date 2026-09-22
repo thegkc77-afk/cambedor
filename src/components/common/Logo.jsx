@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import logoImg from '../../assets/logo.png';
 
-export const Logo = ({ size = 34, showText = true, textSublabel = null, linkTo = '/' }) => {
+export const Logo = ({ size = 34, showText = true, textSublabel = null, textColor = null, linkTo = '/' }) => {
   const content = (
     <div style={{ display: 'inline-flex', alignItems: 'center', gap: '0.625rem' }}>
       <img
@@ -23,7 +23,7 @@ export const Logo = ({ size = 34, showText = true, textSublabel = null, linkTo =
             fontSize: `${size * 0.58}px`,
             fontWeight: '800',
             letterSpacing: '-0.02em',
-            color: 'var(--color-deep-navy)',
+            color: textColor || 'var(--color-deep-navy)',
             lineHeight: 1.1
           }}>
             CAMBEDOR

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Button } from './common/Button';
 import { Logo } from './common/Logo';
@@ -12,10 +13,7 @@ export const Navbar = () => {
   const location = useLocation();
 
   const navLinks = [
-    { label: 'Home', path: '/' },
     { label: 'About Us', path: '/about' },
-    { label: 'Why Join', path: '/why-join' },
-    { label: 'Student Voices', path: '/student-voices' },
     { label: 'Explore', path: '/explore' },
     { label: 'Contact', path: '/contact' }
   ];
@@ -28,22 +26,69 @@ export const Navbar = () => {
           <Logo size={32} showText={true} />
 
           {/* Center Links (Desktop) */}
-          <nav style={{ display: 'flex', alignItems: 'center', gap: '1.75rem' }} className="desktop-nav-links">
+          <nav style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }} className="desktop-nav-links">
             {navLinks.map((link) => {
               const isActive = location.pathname === link.path;
               return (
-                <Link
+                <motion.div
                   key={link.path}
-                  to={link.path}
-                  style={{
-                    fontSize: '0.875rem',
-                    fontWeight: isActive ? '700' : '500',
-                    color: isActive ? 'var(--color-deep-navy)' : 'var(--color-text-secondary)',
-                    transition: 'color 0.15s ease'
-                  }}
+                  initial="initial"
+                  whileHover="hover"
+                  whileTap={{ scale: 0.96 }}
+                  style={{ position: 'relative', padding: '0.4rem 0.85rem', cursor: 'pointer' }}
                 >
-                  {link.label}
-                </Link>
+                  <Link
+                    to={link.path}
+                    style={{
+                      fontSize: '0.90rem',
+                      fontWeight: isActive ? '700' : '600',
+                      color: isActive ? '#111827' : '#4B5563',
+                      transition: 'color 0.2s ease',
+                      display: 'block',
+                      position: 'relative',
+                      zIndex: 1
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+
+                  {/* Soft Glass Glow Backdrop Pill on Hover */}
+                  <motion.span
+                    variants={{
+                      initial: { opacity: 0, scale: 0.88 },
+                      hover: { opacity: 1, scale: 1 }
+                    }}
+                    transition={{ type: 'spring', stiffness: 350, damping: 25 }}
+                    style={{
+                      position: 'absolute',
+                      inset: 0,
+                      backgroundColor: 'rgba(132, 212, 0, 0.12)',
+                      borderRadius: 'var(--radius-pill)',
+                      zIndex: 0,
+                      pointerEvents: 'none'
+                    }}
+                  />
+
+                  {/* Animated Glowing Underline Indicator */}
+                  <motion.span
+                    variants={{
+                      initial: { scaleX: isActive ? 1 : 0, opacity: isActive ? 1 : 0 },
+                      hover: { scaleX: 1, opacity: 1 }
+                    }}
+                    transition={{ duration: 0.22, ease: 'easeOut' }}
+                    style={{
+                      position: 'absolute',
+                      bottom: '2px',
+                      left: '20%',
+                      right: '20%',
+                      height: '2.5px',
+                      background: 'linear-gradient(90deg, #84D400 0%, #3B82F6 100%)',
+                      borderRadius: '4px',
+                      boxShadow: '0 0 10px rgba(132, 212, 0, 0.6)',
+                      transformOrigin: 'center'
+                    }}
+                  />
+                </motion.div>
               );
             })}
           </nav>
@@ -55,14 +100,11 @@ export const Navbar = () => {
                 Dashboard ({user.role})
               </Button>
             ) : (
-              <>
-                <Button variant="outline" size="sm" style={{ borderRadius: 'var(--radius-pill)', padding: '0.4rem 1rem' }} onClick={() => navigate('/login')}>
-                  Login
-                </Button>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Button className="btn-pill-gradient" size="sm" style={{ padding: '0.45rem 1.25rem' }} onClick={() => navigate('/signup')}>
-                  Get Started →
+                  Get Started
                 </Button>
-              </>
+              </motion.div>
             )}
           </div>
 
@@ -115,7 +157,6 @@ export const Navbar = () => {
           ))}
 
           <div style={{ borderTop: '1px solid var(--color-border-light)', paddingTop: '1rem', display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
-            <Button variant="outline" onClick={() => { setMobileOpen(false); navigate('/login'); }}>Login</Button>
             <Button className="btn-pill-gradient" onClick={() => { setMobileOpen(false); navigate('/signup'); }}>Get Started Now →</Button>
           </div>
         </div>
